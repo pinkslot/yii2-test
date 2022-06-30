@@ -9,7 +9,9 @@ use yii\helpers\Html;
 /* @var $footerDatetime string */
 /* @var $bodyDatetime string */
 /* @var $iconClass string */
+/* @var $content string */
 ?>
+
 <?php echo Html::tag('i', '', ['class' => "icon icon-circle icon-main white $iconClass"]); ?>
 
     <div class="bg-success ">

@@ -2,14 +2,14 @@
 
 /**
  * @var $this yii\web\View
- * @var $model \app\models\History
+ * @var $model History
  * @var $dataProvider yii\data\ActiveDataProvider
  * @var $exportType string
  */
 
 use app\models\History;
 use app\widgets\Export\Export;
-use app\widgets\HistoryList\helpers\HistoryListHelper;
+use app\widgets\helpers\CompositeRenderer;
 
 $filename = 'history';
 $filename .= '-' . time();
@@ -47,7 +47,7 @@ ini_set('memory_limit', '2048M');
         [
             'label' => Yii::t('app', 'Message'),
             'value' => function (History $model) {
-                return strip_tags(HistoryListHelper::getBodyByModel($model));
+                return strip_tags((new CompositeRenderer)->getCsvMessage($model));
             }
         ]
     ],
