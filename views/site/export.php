@@ -47,7 +47,7 @@ ini_set('memory_limit', '2048M');
         [
             'label' => Yii::t('app', 'Message'),
             'value' => function (History $model) {
-                return strip_tags((new CompositeRenderer)->getCsvMessage($model));
+                return (new CompositeRenderer)->getCsvMessage($model);
             }
         ]
     ],

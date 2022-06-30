@@ -14,21 +14,6 @@ use yii\data\ActiveDataProvider;
 class HistorySearch extends Model
 {
     /**
-     * @var int|null
-     */
-    public $page;
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            ['page', 'integer', 'min' => 0 ],
-        ];
-    }
-
-    /**
      * @inheritdoc
      */
     public function scenarios()
