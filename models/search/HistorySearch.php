@@ -11,16 +11,8 @@ use yii\data\ActiveDataProvider;
  *
  * @property array $objects
  */
-class HistorySearch extends History
+class HistorySearch extends Model
 {
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [];
-    }
-
     /**
      * @inheritdoc
      */
@@ -37,7 +29,7 @@ class HistorySearch extends History
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search()
     {
         $query = History::find();
 
@@ -54,14 +46,6 @@ class HistorySearch extends History
             ],
         ]);
 
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            $query->where('0=1');
-            return $dataProvider;
-        }
-
         $query->addSelect('history.*');
         $query->with([
             'customer',
@@ -73,5 +57,12 @@ class HistorySearch extends History
         ]);
 
         return $dataProvider;
+    }
+
+    public function getEmptyDataProvider(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => History::find()->where('false'),
+        ]);
     }
 }

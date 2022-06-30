@@ -1,6 +1,7 @@
 <?php
 
-use app\models\search\HistorySearch;
+use app\models\History;
+use app\widgets\helpers\CompositeRenderer;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -8,7 +9,6 @@ use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider ActiveDataProvider */
-/* @var $model HistorySearch */
 /* @var $linkExport string */
 
 ?>
@@ -34,7 +34,7 @@ use yii\widgets\Pjax;
 
 <?php echo ListView::widget([
     'dataProvider' => $dataProvider,
-    'itemView' => '_item',
+    'itemView' => function (History $model) { return (new CompositeRenderer())->renderItem($model); },
     'options' => [
         'tag' => 'ul',
         'class' => 'list-group'
